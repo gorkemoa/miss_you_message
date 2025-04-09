@@ -8,14 +8,13 @@ import '../model/product_idea_model.dart';
 class BrutalProductStrategistService {
   // Gemini API anahtarı ve uç noktası
   final String apiKey = 'AIzaSyBX45bSMGa_ZESwBsJKj0xTNt-lSIXCBgg'; // TODO: Kendi API anahtarınızı ekleyin
-  final String apiUrl =
-      'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-pro:generateContent';
+  final String apiUrl ='https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
   final Uuid _uuid = Uuid();
   final Random _random = Random();
 
   // Maliyet hesaplama değişkenleri
-  final double _inputTokenCost = 0.000375; // USD per 1K token (Gemini-2.0-pro)
-  final double _outputTokenCost = 0.001125; // USD per 1K token (Gemini-2.0-pro)
+  final double _inputTokenCost = 0.000375; // USD per 1K token (Gemini-1.5-pro)
+  final double _outputTokenCost = 0.001125; // USD per 1K token (Gemini-1.5-pro)
   final double _usdToTryRate = 40.0; // Dolar-TL kuru
 
   BrutalProductStrategistService();

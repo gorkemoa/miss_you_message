@@ -126,31 +126,44 @@ class _ChatListScreenState extends State<ChatListScreen> with SingleTickerProvid
                 ],
               ),
             ),
-         floatingActionButton: viewModel.contacts.isNotEmpty
-                ? FloatingActionButton(
-                    onPressed: () {
-                      _fabAnimationController.forward(from: 0.0);
-                      _showImportDialog(context, viewModel);
-                    },
-                    backgroundColor: isDarkMode ? Color(0xFF6B8CFF) : Color(0xFF3B82F6),
-                    elevation: 4,
-                    child: AnimatedBuilder(
-                      animation: _fabAnimationController,
-                      builder: (context, child) {
-                        return Transform.rotate(
-                          angle: _fabAnimationController.value * math.pi * 2.0 / 8,
-                          child: Icon(
-                            Icons.add_comment, 
-                            color: Colors.white,
-                          ),
-                        );
-                      },
-                    ),
-                  )
-                : null,
             body: TabBarView(
               children: [
                 _buildChatList(viewModel, isDarkMode),
+              ],
+            ),
+            floatingActionButton: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                FloatingActionButton(
+                  onPressed: () {
+                    _fabAnimationController.forward(from: 0.0);
+                    _showImportDialog(context, viewModel);
+                  },
+                  backgroundColor: isDarkMode ? Color(0xFF6B8CFF) : Color(0xFF3B82F6),
+                  elevation: 4,
+                  child: AnimatedBuilder(
+                    animation: _fabAnimationController,
+                    builder: (context, child) {
+                      return Transform.rotate(
+                        angle: _fabAnimationController.value * math.pi * 2.0 / 8,
+                        child: Icon(
+                          Icons.add_comment, 
+                          color: Colors.white,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(height: 16),
+                FloatingActionButton(
+                  heroTag: "brutalStrategist",
+                  backgroundColor: Colors.black,
+                  foregroundColor: Colors.red,
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/brutal_strategist');
+                  },
+                  child: const Icon(Icons.business),
+                ),
               ],
             ),
           );

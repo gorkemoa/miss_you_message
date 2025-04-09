@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'service/chat_service.dart';
 import 'service/gemini_service.dart';
+import 'service/brutal_product_strategist_service.dart';
 import 'view/chat_list_screen.dart';
+import 'view/brutal_product_strategist_screen.dart';
 import 'viewmodel/chat_list_viewmodel.dart';
 
 void main() {
@@ -22,6 +24,9 @@ class MyApp extends StatelessWidget {
         Provider<GeminiService>(
           create: (_) => GeminiService(), // Gemini API ana servis olarak kullanılacak
         ),
+        Provider<BrutalProductStrategistService>(
+          create: (_) => BrutalProductStrategistService(), // Acımasız Ürün Stratejisti servisi
+        ),
         ChangeNotifierProxyProvider2<ChatService, GeminiService, ChatListViewModel>(
           create: (context) => ChatListViewModel(
             Provider.of<ChatService>(context, listen: false),
@@ -32,12 +37,16 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'WhatsApp AI Sohbet',
+        title: 'WhatsApp & AI Araçları',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
           useMaterial3: true,
         ),
-        home: const ChatListScreen(),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const ChatListScreen(),
+          '/brutal_strategist': (context) => const BrutalProductStrategistScreen(),
+        },
       ),
     );
   }
